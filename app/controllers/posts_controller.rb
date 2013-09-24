@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find params[:id]
   end
 
   def new
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new post_params
     if @post.save
       redirect_to posts_path
     else
@@ -35,10 +35,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-
+    @post = Post.find params[:id]
     @post.destroy
-
     redirect_to posts_path
   end
 

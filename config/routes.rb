@@ -1,4 +1,9 @@
 Blog::Application.routes.draw do
+
+  #match :get, ':page' => 'statics#display' , :page => /.+\.html/
+
+  root to: 'statics#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

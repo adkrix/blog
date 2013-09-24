@@ -1,9 +1,14 @@
-<% @posts.each do |post| %>
-  <%= link_to post.title, post_path(post) %>
-  <div>
-    <%= post.body %>
-  </div>
-  <hr>
+<% if @posts.any? %>
+  <ul class="list-group">
+  <% @posts.each do |post| %>
+    <li class="list-group-item">
+    <%= link_to post.title, post_path(post) %>
+    <div>
+      <%= post.body %>
+    </div>
+    </li>
+  <% end %>
+  </ul>
 <% end %>
 
-<%= link_to "create new post", new_post_path %>
+<%= link_to "create new post", new_post_path, class: "btn btn-primary" %>
