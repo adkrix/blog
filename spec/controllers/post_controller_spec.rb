@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PostsController do
   describe 'create' do
     before do
-      expect(Post.all.count).to eq 0
+      expect(Post.count).to eq 0
     end
 
     it 'creates post' do
