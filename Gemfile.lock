@@ -172,7 +172,6 @@ DEPENDENCIES
   debugger
   jbuilder (~> 1.2)
   jquery-rails
-  less
   less-rails
   less-rails-bootstrap
   libv8

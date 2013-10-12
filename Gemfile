@@ -5,7 +5,6 @@ gem 'sqlite3'
 
 gem 'libv8'
 gem 'therubyracer'
-gem 'less'
 gem 'less-rails'
 gem 'less-rails-bootstrap'
 
