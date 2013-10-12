@@ -1,11 +1,8 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to post_path(@comment.post)
-    else
-      render controller: 'posts', action: 'show', id: @comment.post_id
-    end
+    @comment.save!
+    render json: {html: render_to_string(layout: false) }
   end
 
   def destroy
@@ -17,6 +14,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :post_id)
+    params.require(:comment).permit(:body, :post_id, :user_id)
   end
 end

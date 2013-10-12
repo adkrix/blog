@@ -2,6 +2,9 @@ Feature: Manage comments
 
   @javascript
   Scenario: Create comment
+    Given I am not authenticated
+    When I log in
+
     Given I am on post page
 
     When I fill comment form
