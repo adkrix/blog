@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe Comment do
+describe Post do
+  it { should have_many :comments }
+
+  it { should validate_presence_of :title }
   it { should validate_presence_of :body }
-  it { should belong_to :post }
 end

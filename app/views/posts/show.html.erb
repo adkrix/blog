@@ -4,6 +4,45 @@
 </div>
 <hr>
 <%= link_to "Back to list", posts_path, class: "btn btn-default" %>
-<%= link_to "Edit post", edit_post_path(@post), class: "btn btn-warning" %>
+<%= link_to "Edit post", edit_post_path(@post), class: "btn btn-primary" %>
 <%= link_to "Delete post", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 
+
+<h3>Comments</h3>
+
+<% if @post.comments.any? %>
+  <ul class="list-group">
+  <% @post.comments.each do |comment| %>
+    <li class="list-group-item js-comment-view">
+      <%= link_to "x", comment_path(comment), class: "js-comment-delete close", data: {method: :delete, confirm: "Are you sure?", remote: true} %>
+      <%= comment.body %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+
+        <%= form_for @comment, html: { class: "", role: "form" } do |f| %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <% if @comment.errors.any? %>
+            Errors: <%= @comment.errors.full_messages.join('; ') %>
+          <% end %>
+
+          <br/>Body:
+          <div class="form-group">
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+
+          <br/>
+          <%= f.submit (@comment.persisted? ? 'Update comment' : 'Create comment'), class: "btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
