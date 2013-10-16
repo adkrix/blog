@@ -1,4 +1,6 @@
-<%= form_for @post, html: { class: "form-horizontal", role: "form" } do |f| %>
+<%= form_for @post, as: :post, html: { class: "form-horizontal", role: "form" } do |f| %>
+
+  <%= f.hidden_field :user_id, value: current_user.try(:id) %>
 
   <% if @post.errors.any? %>
     <% @post.errors.full_messages.each do |err|  %>
@@ -13,14 +15,14 @@
   <div class="form-group">
     <label for="inputTitle" class="col-md-3 control-label">Title:</label>
     <div class="col-md-9">
-      <%= f.text_field :title, class: "form-control", id: "inputTitle" %>
+      <%= f.text_field :title, class: "form-control"%>
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputBody" class="col-md-3 control-label">Body:</label>
     <div class="col-md-9">
-      <%= f.text_area :body, class: "form-control", id: "inputBody", rows: 6 %>
+      <%= f.text_area :body, class: "form-control", rows: 6 %>
     </div>
   </div>
 
@@ -31,7 +33,7 @@
     <% else %>
       <%= link_to "Go to posts list", posts_path, class: "btn btn-default" %>
     <% end %>
-    <%= f.submit locals[:title], class: "btn btn-warning" %>
+    <%= f.submit locals[:title], class: "btn btn-primary" %>
   </div>
 <% end %>
 

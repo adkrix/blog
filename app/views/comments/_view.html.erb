@@ -1,0 +1,4 @@
+<li class="list-group-item js-comment-view">
+  <%= link_to "x", comment_path(comment), class: "js-comment-delete close", data: {method: :delete, confirm: "Are you sure?", remote: true} %>
+  <%= comment.body %>
+</li>

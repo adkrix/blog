@@ -3,11 +3,12 @@ require 'spec_helper'
 describe PostsController do
   describe 'create' do
     before do
-      expect(Post.all.count).to eq 0
+      expect(Post.count).to eq 0
     end
 
     it 'creates post' do
-      post :create, { post: { title: 'First post', body: 'hello world' } }
+      @user = User.create(email: 'user@example.com', password: '12345678')
+      post :create, { post: {  user_id: @user.id, title: 'First post', body: 'hello world'  } }
 
       expect(Post.all.count).to eq 1
       post = Post.first
@@ -18,7 +19,8 @@ describe PostsController do
 
   describe 'update' do
     before do
-      @post = Post.create(title: '1', body: '2')
+      @user = User.create(email: 'user@example.com', password: '12345678')
+      @post = Post.create(title: '1', body: '2', user: @user)
     end
 
     it 'updates post' do
@@ -28,6 +30,7 @@ describe PostsController do
       expect(@post.title).to eq '3'
       expect(@post.body).to eq '4'
     end
+
   end
 
 end
