@@ -28,3 +28,9 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
 end
+
+#Capistrano
+gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'unicorn'
+gem 'capistrano-unicorn'
