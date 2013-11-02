@@ -2,10 +2,10 @@ require 'bundler/capistrano'
 require 'rvm/capistrano'
 require 'capistrano-unicorn'
 
-load 'config/recipes/base'
-load 'config/recipes/config'
+#load 'config/recipes/base'
+#load 'config/recipes/config'
 
-server '<<Your server IP>>', :web, :app, :db, primary: true
+server '54.200.192.192', :web, :app, :db, primary: true
 
 set :user, 'ubuntu'
 set :application, 'blog'
@@ -21,7 +21,8 @@ set :use_sudo, false
 
 default_run_options[:pty] = true
 #ssh_options[:forward_agent] = true
-
+ssh_options[:auth_methods] = ["publickey"]
+ssh_options[:keys] = ['/home/creek/Загрузки/Skype/workshop.pem']
 
 set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, 'read-only'       # more info: rvm help autolibs
